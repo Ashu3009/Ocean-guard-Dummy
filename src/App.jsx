@@ -29,11 +29,11 @@ function App() {
   }
 
   // Get next boat index (avoiding adjacent repeats)
-  const getNextBoatIndex = () => {
+  const getNextBoatIndex = (currentIndex) => {
     let nextIndex
     do {
       nextIndex = Math.floor(Math.random() * boatImages.length)
-    } while (nextIndex === previousBoatIndex && boatImages.length > 1)
+    } while (nextIndex === currentIndex && boatImages.length > 1)
     return nextIndex
   }
 
@@ -44,7 +44,7 @@ function App() {
 
   // Generate new detection data
   const generateDetection = () => {
-    const nextIndex = getNextBoatIndex()
+    const nextIndex = getNextBoatIndex(currentBoatIndex)
     const newCoords = generateRandomCoordinates()
     const newTimestamp = new Date()
 
